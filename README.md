@@ -1,3 +1,12 @@
+# ColorBox
+
+Run `npm start` to run.
+
+See live at: https://mandeeps708.github.io/reactcolorbox
+
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

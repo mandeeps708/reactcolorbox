@@ -1,0 +1,109 @@
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+function waitSeconds(iMilliSeconds) {
+    var counter= 0
+        , start = new Date().getTime()
+        , end = 0;
+    while (counter < iMilliSeconds) {
+        end = new Date().getTime();
+        counter = end - start;
+    }
+}
+
+class HighlightItem extends React.Component {
+    render() {
+        return (
+            <div className="yellow">
+
+            </div>
+        );
+    }
+}
+
+class TodoApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { items: [], text: '', color: '' };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  render() {
+    return (
+      <div>
+        <h3>TODO</h3>
+        <TodoList items={this.state.items} />
+        <form onSubmit={this.handleSubmit}>
+          <label htmlFor="new-todo">
+            What needs to be done?
+          </label>
+          <input
+            id="new-todo"
+            onChange={this.handleChange}
+            value={this.state.text}
+          />
+          <button>
+              Add #{this.state.items.length + 1}
+          </button>
+        </form>
+      </div>
+    );
+  }
+
+  handleChange(e) {
+      this.setState({ text: e.target.value, color: 'red' });
+      console.log("total length: " + this.state.items.length);
+      if (this.state.items.length === 0){
+          console.log("Nothing there yet!");
+      }
+      else {
+          for (let i=0; i<this.state.items.length; i++){
+              if (this.state.items[i].text.includes(e.target.value)){
+                  this.highlightChange(i);
+              }
+          }
+      }
+  }
+
+    highlightChange(i) {
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    if (!this.state.text.length) {
+      return;
+    }
+    const newItem = {
+      text: this.state.text,
+      id: Date.now(),
+      color: this.state.color,
+    };
+    this.setState(state => ({
+      items: state.items.concat(newItem),
+        text: '',
+        color: '',
+    }));
+  }
+}
+
+class TodoList extends React.Component {
+  render() {
+    return (
+      <ul>
+        {this.props.items.map(item => (
+          <li key={item.id} style={{color: item.color }}>{item.text}</li>
+        ))}
+      </ul>
+    );
+  }
+}
+
+    /*
+ReactDOM.render(
+  <TodoApp />,
+  document.getElementById('todos-example')
+);*/
+
+export default TodoApp;

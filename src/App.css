@@ -1,0 +1,22 @@
+body {
+    background-color: whitesmoke;
+}
+
+.colorBox {
+    background-color: mistyrose;
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+.content {
+    text-align: center;
+    margin: 100px;
+}
+
+.input-text {
+ margin-top: 10px;
+ margin-bottom: 10px;
+    text-align: center;
+}
